@@ -18,3 +18,6 @@ zeroize = { version = "1", features = ["derive"] }
 
 [dev-dependencies]
 hex = "0.4"
+# Only used by tests/rng_backend.rs to parse `cargo metadata` output for the
+# dependency-graph structural guard (see that file's doc comment).
+serde_json = "1"
