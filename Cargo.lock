@@ -447,6 +447,7 @@ dependencies = [
  "k256",
  "pbkdf2",
  "ripemd",
+ "serde_json",
  "sha2",
  "zeroize",
 ]
