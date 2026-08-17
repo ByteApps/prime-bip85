@@ -4,7 +4,7 @@ use std::rc::Rc;
 
 use bip85_core::bip85::{derive, Application};
 use bip85_core::{seedqr, Network, Xprv};
-use slint_keyos_platform::app_ui;
+use slint_keyos_platform::app_ui2;
 use slint_keyos_platform::fs::{self, Location, OpenFlags};
 use slint_keyos_platform::qrcode;
 use slint_keyos_platform::slint::{Color, ComponentHandle, Image, VecModel};
@@ -12,7 +12,7 @@ use zeroize::Zeroize;
 
 security::use_api!();
 
-app_ui!("prime-bip85");
+app_ui2!("BIP-85");
 
 type Fs = fs::FileSystem<fs_permissions::FileSystemPermissions>;
 
