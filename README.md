@@ -35,6 +35,15 @@ BIP-85 turns your Passport Prime's master seed into a family tree of independent
 
 > The screenshots show children of the **all-zero test seed** ("abandon … art") in the simulator — publicly known vectors, never funded.
 
+## Why there is no installable release yet
+
+The app is complete and verified in the simulator, but **KeyOS 1.4 / SDK
+1.0.0 reserves the `GetSeed` permission for Foundation-signed apps** — and
+deriving from the device master seed is this app's whole purpose. A
+third-party-signed sideload cannot hold that permission today, so we are
+not publishing an installable build that would fail on first use. An
+installable release will follow as soon as the platform allows it.
+
 ## Get it running
 
 With the Foundation SDK installed, build and launch in the simulator with:
