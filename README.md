@@ -1,5 +1,11 @@
 # <img src="resources/icon.svg" alt="" width="42" align="top" /> BIP-85
 
+> **⚠️ RETIRED (2026-08-19).** KeyOS does not grant third-party apps access
+> to the master seed (`GetSeed` is Foundation-only), and building BIP-85 on
+> the app-scoped seed instead would break compatibility with every other
+> wallet — see [Why this app is retired](#why-this-app-is-retired). The
+> code remains as a verified reference implementation.
+
 **Bitcoin · Seeds** — one backup to rule them all: derive every wallet you'll ever hand out from the seed you already protect.
 
 BIP-85 turns your Passport Prime's master seed into a family tree of independent secrets. Need a seed for a hot wallet, a gift, a test device, a friend getting started — or a password that can never be forgotten? Derive a child — a fresh 12-, 18-, or 24-word mnemonic, a WIF key, an XPRV, raw entropy, or a strong password — and hand it out knowing that no child can ever reveal its siblings or the parent. Lose everything, restore your one seed phrase, and every child you ever derived comes back, identical. Fully offline, like everything on Prime.
@@ -35,14 +41,26 @@ BIP-85 turns your Passport Prime's master seed into a family tree of independent
 
 > The screenshots show children of the **all-zero test seed** ("abandon … art") in the simulator — publicly known vectors, never funded.
 
-## Why there is no installable release yet
+## Why this app is retired
 
-The app is complete and verified in the simulator, but **KeyOS 1.4 / SDK
-1.0.0 reserves the `GetSeed` permission for Foundation-signed apps** — and
-deriving from the device master seed is this app's whole purpose. A
-third-party-signed sideload cannot hold that permission today, so we are
-not publishing an installable build that would fail on first use. An
-installable release will follow as soon as the platform allows it.
+The app is complete and verified in the simulator — pinned to the official
+BIP-85 test vectors and cross-checked byte-for-byte against an independent
+implementation — but **KeyOS reserves the `GetSeed` permission for
+Foundation-signed apps**, and deriving from the device master seed is this
+app's whole purpose. A third-party-signed sideload cannot hold that
+permission.
+
+The one alternative the platform offers, `GetAppSeed`, is deliberately not
+an option: it returns an app-scoped seed (`HMAC-SHA256(app-id,
+master_seed)`), not the master seed. BIP-85's entire value is that any
+compliant wallet reproduces the same children from the same master seed —
+children derived from an app-scoped seed would be reproducible by this app
+alone and incompatible with every other BIP-85 implementation. Shipping
+that would carry the BIP-85 name without its interoperability promise, so
+rather than publish something misleading, the project is retired. The code
+stays here, archived, as a correct and fully-tested reference — if the
+platform ever grants third-party apps standard master-seed access, it is
+ready to revive.
 
 ## Get it running
 
